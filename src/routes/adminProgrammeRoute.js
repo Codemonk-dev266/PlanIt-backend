@@ -3,17 +3,13 @@ import {
   getAllProgrammesForAdmin,
   getProgrammeByIdForAdmin,
 } from "../controllers/adminProgrammeController.js";
-
-import adminMiddleWare from "../middleware/adminMiddleWare.js";
 import authMiddleWare from "../middleWare/authMiddleWare.js";
+import adminMiddleWare from "../middleWare/adminMiddleWare.js";
 
 const router = express.Router();
 
-// all routes require adminauthentication
-router.use(authMiddleWare, adminMiddleWare);
-
 // get all programmes for admin
-router.get("/", getAllProgrammesForAdmin);
+router.get("/", authMiddleWare, adminMiddleWare, getAllProgrammesForAdmin);
 
 // get individual programme
 router.get("/:id", getProgrammeByIdForAdmin);

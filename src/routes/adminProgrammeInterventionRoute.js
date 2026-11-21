@@ -10,15 +10,24 @@ import adminMiddleWare from "../middleWare/adminMiddleWare.js";
 
 const router = express.Router();
 
-router.use(authMiddleWare, adminMiddleWare);
 
 // Update programme information
-router.patch("/:id", adminUpdateProgramme);
+router.patch("/:id", authMiddleWare, adminMiddleWare, adminUpdateProgramme);
 
 // Change programme status
-router.patch("/:id/status", adminChangeProgrammeStatus);
+router.patch(
+  "/:id/status",
+  authMiddleWare,
+  adminMiddleWare,
+  adminChangeProgrammeStatus,
+);
 
 // Enable or disable registration
-router.patch("/:id/registration", adminToggleProgrammeRegistration);
+router.patch(
+  "/:id/registration",
+  authMiddleWare,
+  adminMiddleWare,
+  adminToggleProgrammeRegistration,
+);
 
 export default router;

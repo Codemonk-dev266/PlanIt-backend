@@ -6,8 +6,11 @@ import adminMiddleWare from "../middleWare/adminMiddleWare.js";
 
 const router = express.Router();
 
-router.use(authMiddleWare, adminMiddleWare);
-
-router.patch("/:id/check-in", adminCorrectCheckIn);
+router.patch(
+  "/:id/check-in",
+  authMiddleWare,
+  adminMiddleWare,
+  adminCorrectCheckIn,
+);
 
 export default router;

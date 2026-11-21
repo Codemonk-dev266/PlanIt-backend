@@ -1,7 +1,7 @@
 import express from "express";
 
-import authMiddleWare from "../middleware/authMiddleWare.js";
-import adminMiddleWare from "../middleware/adminMiddleWare.js";
+import authMiddleWare from "../middleWare/authMiddleWare.js";
+import adminMiddleWare from "../middleWare/adminMiddleWare.js";
 
 import {
   getAllOrganisationsForAdmin,
@@ -10,13 +10,15 @@ import {
 
 const router = express.Router();
 
-// Protect every route
-router.use(authMiddleWare, adminMiddleWare);
-
 // Get all organisations
-router.get("/", getAllOrganisationsForAdmin);
+router.get("/", authMiddleWare, adminMiddleWare, getAllOrganisationsForAdmin);
 
 // Get individual organisation
-router.get("/:id", getOrganisationByIdForAdmin);
+router.get(
+  "/:id",
+  authMiddleWare,
+  adminMiddleWare,
+  getOrganisationByIdForAdmin,
+);
 
 export default router;
