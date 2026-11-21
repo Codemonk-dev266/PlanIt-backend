@@ -4,8 +4,8 @@ import {
   getProgrammeByIdForAdmin,
 } from "../controllers/adminProgrammeController.js";
 
-import authMiddleWare from "../middleware/authMiddleWare.js";
 import adminMiddleWare from "../middleware/adminMiddleWare.js";
+import authMiddleWare from "../middleWare/authMiddleWare.js";
 
 const router = express.Router();
 
